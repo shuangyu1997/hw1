@@ -1,11 +1,11 @@
 import collections
 
-###########点数を計算する関数############
+####################点数を計算する関数##################
 def score(L):
     c = collections.Counter(L)
     sum=c['a']+c['b']+c['d']+c['e']+c['g']+c['i']+c['n']+c['o']+c['r']+c['s']+c['t']+c['u']
     sum+=2*(c['c']+c['f']+c['h']+c['l']+c['m']+c['p']+c['v']+c['w']+c['y'])
-    sum+=3*(c['j']+c['k']+c['q']+c['x']+c['z'])
+    sum+=3*(c['j']+c['k']+c['x']+c['z']+c['q'])
     return (sum+1)*(sum+1)
     
 
@@ -32,11 +32,13 @@ while i < len(L):
    s1=L[i]
    s2=s1.lower()
    char=list(s2)
+   if('q'in char):#quをqとして考える
+       char.remove('u')
    s2=''
    char.sort()
-   while j < len(char):
+   while j < len(char):          
        s += char[j]
-       j += 1
+       j+=1
    L3.append(s)    
    s=s+','+s1    
    L2.append(s)
@@ -58,7 +60,10 @@ while True:
   x=input("Input word:")
   if(x== '0'):
       break;
-  Ent.append(x);           
+  if(x=='qu'):#quをqして考える
+      x='q'
+      
+  Ent.append(x);          
 print(Ent) 
 newEnt=sorted(Ent) 
 print(newEnt) 
@@ -87,6 +92,8 @@ while j<len(newL2):
     j+=1;
     i=0;
     dic=[]
+    
+
     
     
 print("Final answer is",ans)
